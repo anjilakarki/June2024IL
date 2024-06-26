@@ -1,0 +1,106 @@
+Reasons object type is not suitable for passing parameters:
+
+1. there is no type safety. 
+2. Unwanted boxing 
+
+Generics: allows us to define classes and methods but defer the specificaton of types until the classes or methods is declared or called. 
+
+Use case of Generics:
+interface: is used to include all common behaviors
+
+1. Interface is a collection of methods which are by default abstract and public and will be implemented by the derived classes. 
+2. One class can implement interfaces. 
+3. Interface can not be instantiated. 
+4. Interface is helpful in writing loosely coupled code. 
+
+Abstract class vs Interface : Abstraction
+
+1. Abstract class will provide base class to its subclasses; is a wise choice when we have class hierarchy. 
+Interface will define common functionalities and behaviors that can be implemented by any class.
+
+2. Once class can only inherit from one abstract or concrete class but one class can implement multiple interfaces. 
+
+3. Methods in abstract class can be abstract method or non-abstract method but methods in an interface is by default public and abstract. 
+
+IRepository: common crud
+ICustomerRepository: getCustomerByEmail, getCustomerByCity
+IProductRepository: GetProductByCategory
+
+CustomerRepository: IRepository, ICustomerRepository
+ProductRepository: IRepository, IProductRepository
+
+SOLID Principles:
+
+S: Single Responsibility Principle: a class should only have one reason to change; one class will only be responsible to do one thing
+
+Frontend: several web pages to interact with users
+
+Backend: handle http request and response 
+1. Controllers/Web layer: handle request/reponse, validation, security check 
+2. Service Layer/Business Layer: business logic 
+3. Data Layer/Repository layer: talk to the database 
+4. other classes:
+--utility class: convert data types
+--helper class: functional design patter like factory
+--Entity class: ORM 
+--Constants
+
+O: Open/Closed Principle: Software entities like classes, modules, functions, etc should be open for extension but closed for modification. 
+--use extension methods or inheritance 
+
+L: Liskov Substitution Principe: derived classes should be substitutable for their base types. 
+
+I: Interface Segregation Principle: clients should not be forced to depend on the interfaces they do not use. 
+
+CustomerRepository, ProductRepository
+commonalities: Crud operations: Create, GetAll, GetById, Update, Delete 
+getCustomerByEmail ---> CustomerRepository, GetProductByCategory -->ProductRepository
+
+One way:
+Single Interface IRepository: Create, GetAll, GetById, Update, Delete, getCustomerByEmail, GetProductByCategory
+CustomerRepository: IRepository
+ProductRepository: IRepository
+
+Another way:
+IRepository: Create, GetAll, GetById, Update, Delete
+ICustomerRepository:  getCustomerByEmail
+IProductRepository:  GetProductByCategory
+CustomerRepository: IRepository, ICustomerRepository
+ProductRepository: IRepository, IProductRepository
+
+D: Dependency Inversion Principle: classes/entites need to depend on abstractions instead of concrete classes. 
+It help us to achieve loosley coupled code. 
+High level modules should not depend on low level modules; instead they should depend on abstractions. 
+Implement it using dependency injection. 
+
+
+IRepository: Create, GetAll, GetById, Update, Delete
+ICustomerRepository:  getCustomerByEmail
+ICustomerRepository : ICustomerRepository
+CustomerRepository: IRepository, ICustomerRepository
+
+
+Collections: data structure that stores a group of related objects
+
+Generic vs non generics collection
+
+1. Non-generic collection: take object type, one collection can contain differnt types of element: both value type and reference type;
+there will be unwanted boxing because if value type is stored then they will have to be boxes to an object type and object is a refernce type
+2. Generic collection : specify the type 
+
+Advantages of generic collection
+
+1. Type safety
+2. Better Performance: 
+3. Flexibility 
+4. Maintainability
+
+
+
+
+
+
+
+
+
+
