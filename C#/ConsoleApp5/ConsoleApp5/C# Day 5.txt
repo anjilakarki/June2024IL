@@ -1,0 +1,62 @@
+Recap:
+
+1. Generics 
+2. Delegates
+3. Extension Method
+
+LINQ: Langauage Integrated Query; is a sql like syntax that help us talk to different data sources. 
+
+1.LINQ to Objects: allow us to talk to in-memory data sources like list, array or collection. 
+                    The return type is going to be IEnumerable interface; is the base interface for all the collections and interfaces. 
+                    
+                    
+ 2. LINQ to Datasets: allow us to work with ADO.Net. 
+ 
+ 3.LINQ to Sql : allow us to talk to the SQl server database; the return type is IQueryable
+ 
+ 4.LINQ to Entities: allow us to talk to other sql db or entity framework---> the return type is IQueryable
+ 
+ 
+in memory data sources: IEnumerable
+out of data sources: IQueryable
+
+LINQ is also a bunch of built  in extension methods that provide multiple query expressions on IEnumerable<T> interface.
+
+In order to return a single record:
+
+1.First vs FirstOrDefault
+2.Single vs SingleOrDefault
+
+First: Return the very first record when there is one or more matching value found and if no matching record got found, it will throw an exception.
+FirstOrDefault: Return the very first record when there is one or more matching values found, if no matching record is found, it will assign a default value; null if not specified
+Single: Return the only matched record but if we can not find any matching record, it will throw an exception. If we have more than one matching record, it will throw an exception. 
+SingleOrDefault: Return the only matched record; if we can not find any matching record then it will assign a default value; null if not specified. If there are more than one record found,
+it will also throw an exception. 
+
+
+Quantifier Operator:
+
+Any():Checks if any elements satisfy the specified condition, if yes returns true otherwise returns false
+All(): Checks if all elements satisfy the specified condition, if yes returns true otherwise returns false
+
+Deferred Execution and Immediate execution:
+
+IEnumerable: base interface for all the interfaces and collections
+IQueryable extends from IEnumerable
+ToList(), ToArray()
+
+ Inner Join: 
+ 
+ var result = from c in Customers join o in Orders on c.CustomerID 
+ equals o.CustomerID
+ select new {c.CustomerID, c.ContactName, o.OrderDate}; 
+ 
+ 
+ Left Join:
+ var result = from c in Customers join o in Orders on c.CustomerID 
+ equals o.CustomerID 
+ into customerOrders 
+ //store it into a temporary collection
+ from co in customerOrders.DefaultIfEmpty()
+ select new {c.CustomerID, c.ContactName, 
+ co.OrderDate};
